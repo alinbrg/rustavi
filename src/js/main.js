@@ -26,4 +26,15 @@ if (document.querySelector(".main-page-news")) {
 			},
 		},
 	});
+
+	if (window.innerWidth <= 1024) {
+		swiper.destroy(false, true);
+		console.log(swiper);
+	}
+	window.addEventListener("resize", (e) => {
+		console.log(window.innerWidth);
+		if (window.innerWidth <= 1024) {
+			swiper.destroy(false, true);
+		}
+	});
 }
