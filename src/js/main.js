@@ -38,3 +38,10 @@ if (document.querySelector(".main-page-news")) {
 		}
 	});
 }
+
+const burger = document.querySelector(".burger");
+const header = document.querySelector("header");
+burger &&
+	burger.addEventListener("click", (e) => {
+		header.classList.toggle("active");
+	});
