@@ -8,33 +8,45 @@ if (document.querySelector(".main-page-swiper")) {
 }
 
 if (document.querySelector(".main-page-news")) {
-	const swiper = new Swiper(".swiper-main-page-news-swiper", {
-		navigation: {
-			nextEl: ".main-page-news .swiper-button-next",
-			prevEl: ".main-page-news .swiper-button-prev",
-		},
-		slidesPerView: 4,
-		spaceBetween: 16,
-		breakpoints: {
-			0: {
-				slidesPerView: 1,
-				spaceBetween: 20,
+	let swiper;
+
+	function initSwiper() {
+		swiper = new Swiper(".swiper-main-page-news-swiper", {
+			navigation: {
+				nextEl: ".main-page-news .swiper-button-next",
+				prevEl: ".main-page-news .swiper-button-prev",
 			},
-			1024: {
-				slidesPerView: 4,
-				spaceBetween: 16,
+			slidesPerView: 4,
+			spaceBetween: 16,
+			breakpoints: {
+				0: {
+					slidesPerView: 1,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 16,
+				},
+				1200: {
+					slidesPerView: 4,
+					spaceBetween: 16,
+				},
 			},
-		},
-	});
+		});
+	}
+
+	initSwiper();
 
 	if (window.innerWidth <= 1024) {
-		swiper.destroy(false, true);
-		console.log(swiper);
+		swiper && swiper.destroy(false, true);
+	} else {
+		initSwiper();
 	}
 	window.addEventListener("resize", (e) => {
-		console.log(window.innerWidth);
 		if (window.innerWidth <= 1024) {
-			swiper.destroy(false, true);
+			swiper && swiper.destroy(false, true);
+		} else {
+			initSwiper();
 		}
 	});
 }
